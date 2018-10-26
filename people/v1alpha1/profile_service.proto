@@ -4,6 +4,8 @@ package superego.people.v1alpha1;
 
 import "google/api/annotations.proto";
 
+option go_package = "github.com/benkim0414/superego-cloud-endpoints/people/v1alpha1;people";
+
 // Superego People API Profile Manager v1alpha1
 service ProfileManager {
   // Creates a profile, consisting of the user profile information of Firebase.

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package superego.people.v1alpha1;
+
+import "google/api/annotations.proto";
+
+// Superego People API Profile Manager v1alpha1
+service ProfileManager {
+  // Creates a profile, consisting of the user profile information of Firebase.
+  rpc CreateProfile(CreateProfileRequest) returns (Profile) {
+    option (google.api.http) = { post: "/v1alpha1/{name=users/*/profile}" body: "profile" };
+  }
+
+  // Gets the profile of a specific user.
+  rpc GetProfile(GetProfileRequest) returns (Profile) {
+    option (google.api.http) = { get: "/v1alpha1/{name=users/*/profile}" };
+  }
+}
+
+// CreateProfileRequest creates a profile.
+message CreateProfileRequest {
+  // The name of the profile to create.
+  // Specified in the format 'users/*/profile'.
+  string name = 1;
+  // A profile resource.
+  Profile profile = 2;
+}
+
+// GetProfileRequest gets the profile of a user.
+message GetProfileRequest {
+  // The name of the profile to retrieve.
+  string name = 1;
+}
+
+// A user profile.
+message Profile {
+  // The name of this profile.
+  string name = 1;
+  // The user's display name.
+  string display_name = 2;
+  // The user's email address.
+  string email = 3;
+  // The URL of the user's profile picture.
+  string photo_url = 4;
+}

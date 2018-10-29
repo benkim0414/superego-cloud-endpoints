@@ -1,0 +1,18 @@
+# The configuration schema is defined by service.proto file
+# https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
+type: google.api.Service
+config_version: 3
+
+# Name of the service configuration.
+name: superego.endpoints.superego-173310.cloud.goog
+
+# API title to appear in the user interface (Google Cloud Console).
+title: Superego gRPC API
+apis:
+- name: superego.people.v1alpha1.ProfileManager
+
+usage:
+  rules:
+  # GetProfile method can be called without an API key.
+  - selector: superego.people.v1alpha1.ProfileManager.GetProfile
+    allow_unregistered_calls: true

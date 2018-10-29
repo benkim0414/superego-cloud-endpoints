@@ -1,0 +1,22 @@
+# The configuration schema is defined by service.proto file
+# https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
+type: google.api.Service
+config_version: 3
+
+# HTTP rules define translation from HTTP/REST/JSON to gRPC. With these rules
+# HTTP/REST/JSON clients will be able to call the profile manager service.
+http:
+  rules:
+  # 'CreateProfile' can be called using the POST HTTP verb and the 
+  # '/users/*/profile' URL path. The posted HTTP body is the JSON
+  # respresentation of the 'profile' field of 'CreateProfileRequest' protobuf
+  # message.
+  - selector: superego.people.v1alpha1.ProfileManager.CreateProfile
+    post: /v1alpha1/{name=users/*/profile}
+    body: profile
+
+  # 'GetProfile' is available via the GET HTTP verb and '/users/*/profile'
+  # URL path, where {name} is the value of the 'name' field of
+  # 'GetProfileRequest' protobuf message.
+  - selector: superego.people.v1alpha1.ProfileManager.GetProfile
+    get: /v1alpha1/{name=users/*/profile}

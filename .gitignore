@@ -12,3 +12,6 @@
 *.out
 
 api_descriptor.pb
+
+# Google Application Credentials
+service-account-creds.json
